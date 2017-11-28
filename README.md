@@ -1,6 +1,6 @@
 PHP Wallet Sample
 ==================================
-This is a simple php app that uses fanapium wallet APIs. It only uses curl function in php to send HTTP requests.
+This is a simple php app that uses podland wallet APIs. It only uses curl function in php to send HTTP requests.
 
 How to use this project
 -----------------------
@@ -8,13 +8,14 @@ Clone the project and edit the config.php file and fill it with real values. and
 
 ```php
     $config = [
-        "service"=>"http://<platform-adress>/",
-        "sso"=>"http://<sso-address>/oauth2/",
-        "sso_service"=>"http://<sso-address>/",
-        "client_id"=>"<client-id>",
-        "client_secret"=>"<client-secret>",
-        "home"=>"http://<your-app-home-url>",
-        "api_token"=>"<api-token>",
+        ""service"=>"[platform-address]",
+    "sso"=>"[sso-address]/oauth2/",
+    "sso_service"=>"[sso-address]",
+    "client_id"=>"[client_id]",
+    "client_secret"=>"[client_secret]",
+    "home"=>"[your-app-home]",
+    "api_token"=>"[api_token]",
+    "private_call_address"=>"[private-calls-address]"
     ];
 ```
 
