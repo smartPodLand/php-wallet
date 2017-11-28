@@ -8,13 +8,14 @@ if(!isset($_SESSION['access_token'])){
 }
 else {
     $user = getUser();
+
+
     $userId = $user->userId;
     $bizId = getBusinessId();
     $curl = curl_init();
-    $ott = getOtt();
     curl_setopt_array($curl, [
             //Attention: set pay parameter to true for decresing money from credit
-        CURLOPT_URL => $config['service'] . "nzh/biz/issueInvoice?bizId={$bizId}&userId={$userId}&description=محصول&pay=true&postalCode=000000000&phoneNumber={$user->cellphoneNumber}&city=Tehrab&redirectUrl={$config['home']}&productId[]=0&price[]=5000&quantity[]=1&productDescription[]=services&state=test&address=test&deadline=1397/05/12&guildCode=INFORMATION_TECHNOLOGY_GUILD",
+        CURLOPT_URL => $config['service'] . "nzh/biz/issueInvoice?bizId={$bizId}&userId={$userId}&description=محصول&postalCode=000000000&phoneNumber={$user->cellphoneNumber}&city=Tehran&redirectUrl={$config['home']}&productId[]=0&price[]=5000&quantity[]=1&productDescription[]=services&state=test&address=test&deadline=1397/05/12&guildCode=INFORMATION_TECHNOLOGY_GUILD",
         CURLOPT_RETURNTRANSFER => true,
         CURLOPT_ENCODING => '',
         CURLOPT_MAXREDIRS => 10,
@@ -31,15 +32,16 @@ else {
     curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);
     $responseInvoice = curl_exec($curl);
     $err = curl_error($curl);
-    $resp = json_decode($responseInvoice);
-    $invoice_id = $resp->result->id;
-    $_SESSION['invoice_id'] = $invoice_id;
+
+
     curl_close($curl);
 
     if ($err) {
         echo 'cURL Error #:' . $err;
     } else {
         $responseInvoice = json_decode($responseInvoice);
+        $invoice_id = $responseInvoice->result->id;
+        $_SESSION['invoice_id'] = $invoice_id;
         $errMsg = false;
         if($responseInvoice->hasError){
             if($responseInvoice->errorCode==14){
