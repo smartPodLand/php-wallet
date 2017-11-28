@@ -1,4 +1,4 @@
-Fanapium AloPeyk Sample
+PHP Wallet Sample
 ==================================
 This is a simple php app that uses fanapium wallet APIs. It only uses curl function in php to send HTTP requests.
 
